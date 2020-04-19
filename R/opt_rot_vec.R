@@ -6,12 +6,13 @@
 #' 
 #' @param design The encoded design matrix using 0,1,2 notation that is to be expanded
 #' @param return_n How many of the top rotation vectors (with regards to Omega) should be returned? Default is 5.
-#' 
+#' @param inv Should the determenants be caluclated as inverse of the X1'X1 matrix?
 #' 
 #' @return Returns a data frame that is return_n by f + 2.  
-#' \item Omega-value. This will be the first column
-#' \item Determenant of the information matrix
-#' \item Rotation vectors
+#' Omega-value. This will be the first column
+#' Determenant of the information matrix
+#' Det. Ratio. This is the ratio of the deteminant column over the corresponding value for a design that is just a tripling of the original. If inv = TRUE then the denominator is the det. of the inverse, otherwise it is the det of the non-inverted X'X matrix
+#' Rotation vectors
 #' 
 #' @examples
 #' \dontrun{
@@ -21,7 +22,7 @@
 #' 
 
 
-opt_rot_vec <- function(design, return_n = 5){
+opt_rot_vec <- function(design, return_n = 5, inv = FALSE){
   
   #warnings 
   if(return_n %% 1 != 0){stop("Please make the return_n parameter a natural number!", immediate. = TRUE)}
@@ -32,19 +33,21 @@ opt_rot_vec <- function(design, return_n = 5){
   d <- design
   
   f <- dim(d)[2]
-  
+ 
   all_rot_vec <- alias_design(f)
-  
+
   omegas <- apply(all_rot_vec, 1, tester, design = d)
   candidate_vecs <- all_rot_vec[order(omegas, decreasing = TRUE)[1:return_n],]
   if(length(dim(candidate_vecs)) == 0){candidate_vecs <- as.matrix(t(candidate_vecs))}
   
-  dets <- apply(candidate_vecs, 1, tester_d, design = d)
+  dets <- apply(candidate_vecs, 1, tester_d, design = d, inv = inv)
+  det_org <- tester_d(design = d, rotv = rep(0,f), inv = inv)
+                  
   best_omegas <- omegas[order(omegas, decreasing = TRUE)[1:return_n]]
   
   
-  finals <- cbind(best_omegas, dets, matrix(candidate_vecs, ncol = f))
+  finals <- cbind(best_omegas, dets, dets/det_org, matrix(candidate_vecs, ncol = f))
   if(class(finals) == 'vector'){finals <- as.data.frame(t(finals))}
-  colnames(finals)[1:3] <- c('Omega value', 'Determinant', 'Rotation Vectors')
+  colnames(finals)[1:4] <- c('Omega value', 'Determinant', 'Det Ratio', 'Rotation Vectors')
   return(finals)
 }

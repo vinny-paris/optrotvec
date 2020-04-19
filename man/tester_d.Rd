@@ -4,12 +4,14 @@
 \alias{tester_d}
 \title{Design and Determinant Calculator}
 \usage{
-tester_d(rotv, design)
+tester_d(rotv, design, inv = FALSE)
 }
 \arguments{
 \item{rotv}{The rotation vector with elements 0,1,2 of length f for f being number of factors}
 
 \item{design}{The design matrix to be expanded with elements 0,1,2}
+
+\item{inv}{Should we look at the detemenent of X1'X1 or the determenent of it's inverse?}
 }
 \value{
 Determinant for the agumented design's information matrix
