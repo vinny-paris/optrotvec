@@ -2,7 +2,7 @@
 % Please edit documentation in R/d_opt.R
 \name{d_opt}
 \alias{d_opt}
-\title{Determinant of Info. Matrix}
+\title{Determinant of Inverse of Info. Matrix}
 \usage{
 d_opt(design)
 }
@@ -13,5 +13,5 @@ d_opt(design)
 Determant value
 }
 \description{
-Given a deisgn encoded with 0,1,2 this will calculate the value of the information matrix
+Given a deisgn encoded with 0,1,2 this will calculate the value of the inverse information matrix
 }

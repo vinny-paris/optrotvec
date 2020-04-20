@@ -1,17 +1,15 @@
 #' Finds the optimal foldover plans for 3 level designs
 #' 
-#' For a given design matrix encoded with 0,1,2 this function will return the values of Omega, the determinant of X_1'X_1, and 
+#' For a given design matrix encoded with 0,1,2 this function will return the values of Omega, the determinant of the inverse of X_1'X_1, and 
 #' 
 #' @export
 #' 
 #' @param design The encoded design matrix using 0,1,2 notation that is to be expanded
 #' @param return_n How many of the top rotation vectors (with regards to Omega) should be returned? Default is 5.
-#' @param inv Should the determenants be caluclated as inverse of the X1'X1 matrix?
-#' 
 #' @return Returns a data frame that is return_n by f + 2.  
 #' Omega-value. This will be the first column
 #' Determenant of the information matrix
-#' Det. Ratio. This is the ratio of the deteminant column over the corresponding value for a design that is just a tripling of the original. If inv = TRUE then the denominator is the det. of the inverse, otherwise it is the det of the non-inverted X'X matrix
+#' Det. Ratio. This is the ratio of the deteminant column over the the detemenant of the inverse of the information matrix for a design that is just a tripling of the original.
 #' Rotation vectors
 #' 
 #' @examples
@@ -22,7 +20,8 @@
 #' 
 
 
-opt_rot_vec <- function(design, return_n = 5, inv = FALSE){
+opt_rot_vec <- function(design, return_n = 5){
+  inv <- TRUE
   
   #warnings 
   if(return_n %% 1 != 0){stop("Please make the return_n parameter a natural number!", immediate. = TRUE)}
