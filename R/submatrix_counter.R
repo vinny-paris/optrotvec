@@ -23,7 +23,7 @@
      i <- v[1]
      j <- v[2]
      x <- alias[i:(i+1), j:(j+1)]
-     if(sum(x < 1e-8) == 4) {
+     if(sum(abs(x) < 1e-8) == 4) {
        return(1)}
       else{return(0)}
    }
