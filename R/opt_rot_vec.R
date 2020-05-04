@@ -34,7 +34,9 @@ opt_rot_vec <- function(design, return_n = 5){
   f <- dim(d)[2]
  
   all_rot_vec <- alias_design(f)
-
+  s <- sample(dim(all_rot_vec)[2])
+  all_rot_vec <- all_rot_vec[s,]
+  
   omegas <- apply(all_rot_vec, 1, tester, design = d)
   candidate_vecs <- all_rot_vec[order(omegas, decreasing = TRUE)[1:return_n],]
   if(length(dim(candidate_vecs)) == 0){candidate_vecs <- as.matrix(t(candidate_vecs))}
@@ -42,7 +44,7 @@ opt_rot_vec <- function(design, return_n = 5){
   dets <- apply(candidate_vecs, 1, tester_d, design = d, inv = inv)
   det_org <- tester_d(design = d, rotv = rep(0,f), inv = inv)
                   
-  best_omegas <- omegas[order(omegas, decreasing = TRUE)[1:return_n]]
+  best_omegas <- omegas[order(omegas, decreasing = TRUE)]
   
   
   finals <- cbind(best_omegas, dets, dets/det_org, matrix(candidate_vecs, ncol = f))
