@@ -9,7 +9,7 @@
 #' @return Returns a data frame that is return_n by f + 2.  
 #' Omega-value. This will be the first column
 #' Determenant of the information matrix
-#' Det. Ratio. This is the ratio of the deteminant column over the the detemenant of the inverse of the information matrix for a design that is just a tripling of the original.
+#' Det. Ratio. This is the ratio of the deteminant column over the the detemenant of the information matrix for a design that is just a tripling of the original.
 #' Rotation vectors
 #' 
 #' @examples
@@ -21,7 +21,7 @@
 
 
 opt_rot_vec <- function(design, return_n = 5){
-  inv <- TRUE
+  inv <- FALSE
   
   #warnings 
   if(return_n %% 1 != 0){stop("Please make the return_n parameter a natural number!", immediate. = TRUE)}
@@ -48,5 +48,6 @@ opt_rot_vec <- function(design, return_n = 5){
   finals <- cbind(best_omegas, dets, dets/det_org, matrix(candidate_vecs, ncol = f))
   if(class(finals) == 'vector'){finals <- as.data.frame(t(finals))}
   colnames(finals)[1:4] <- c('Omega value', 'Determinant', 'Det Ratio', 'Rotation Vectors')
+  finals[order(-finals[,1], -finals[,2]), ]
   return(finals)
 }
