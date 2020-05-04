@@ -34,7 +34,7 @@ opt_rot_vec <- function(design, return_n = 5){
   f <- dim(d)[2]
  
   all_rot_vec <- alias_design(f)
-  s <- sample(dim(all_rot_vec)[2])
+  s <- sample(dim(all_rot_vec)[1])
   all_rot_vec <- all_rot_vec[s,]
   
   omegas <- apply(all_rot_vec, 1, tester, design = d)
