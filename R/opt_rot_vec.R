@@ -50,6 +50,6 @@ opt_rot_vec <- function(design, return_n = 5){
   finals <- cbind(best_omegas, dets, dets/det_org, matrix(candidate_vecs, ncol = f))
   if(class(finals) == 'vector'){finals <- as.data.frame(t(finals))}
   colnames(finals)[1:4] <- c('Omega value', 'Determinant', 'Det Ratio', 'Rotation Vectors')
-  finals[order(-finals[,1], -finals[,2]), ]
+  finals <- finals[order(-finals[,1], -finals[,2]), ]
   return(finals)
 }
