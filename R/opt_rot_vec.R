@@ -47,19 +47,18 @@ opt_rot_vec <- function(design, return_n = 5){
   unqieness <- o_tf[order(omegas, decreasing = TRUE)]
   
   if(length(dim(candidate_vecs)) == 0){candidate_vecs <- as.matrix(t(candidate_vecs))}
-  hope <- cbind(candidate_vecs, unqieness)
+  hope <- cbind(candidate_vecs, unqieness)[c(1:return_n),]
   
   
   dets <- apply(hope, 1, tester_d, design = d, inv = inv)
   det_org <- tester_d(design = d, rotv = c(rep(0,f), FALSE), inv = inv)
                   
-  best_omegas <- omegas[order(omegas, decreasing = TRUE)]
+  best_omegas <- omegas[order(omegas, decreasing = TRUE)][c(1:return_n),]
   
   
   finals <- cbind(best_omegas, dets, dets/det_org, unqieness, matrix(candidate_vecs[,-(f+1)], ncol = f))
   if(class(finals) == 'vector'){finals <- as.data.frame(t(finals))}
   colnames(finals)[1:5] <- c('Omega value', 'Determinant', 'Det Ratio', 'Run Reduceds?', 'Rotation Vectors')
   finals <- finals[order(-finals[,1], -finals[,2]), ]
-  finals <- finals[1:return_n,]
   return(finals)
 }
