@@ -40,7 +40,7 @@ opt_rot_vec <- function(design, return_n = 5){
   omegas1 <- apply(all_rot_vec, 1, tester, design = d)
   omegas2 <- apply(all_rot_vec, 1, tester, design = d, unique = FALSE)
   omegas  <- c(omegas1, omegas2)
-  o_tf    <- c(rep(TRUE, length(omegas1)), rep(FALSE, legnth(omegas2)))
+  o_tf    <- c(rep(TRUE, length(omegas1)), rep(FALSE, length(omegas2)))
                
   alts     <- rbind(all_rot_vec, all_rot_vec)
   candidate_vecs <- alts[order(omegas, decreasing = TRUE)[1:return_n],]
