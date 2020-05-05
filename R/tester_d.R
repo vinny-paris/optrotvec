@@ -10,7 +10,7 @@
 #'@return Determinant for the agumented design's information matrix
 
 tester_d <- function(rotv, design, inv = FALSE){
-  d <- rot(design, rotv, unique = FALSE)
+  d <- rot(design, rotv[-length(rotv)], unique = rotv[legnth(rotv)])
   if(inv) {value <- d_opt(d)}
   else {value <- d_opt_noinv(d)}
   return(value)
