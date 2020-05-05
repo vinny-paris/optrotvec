@@ -53,7 +53,7 @@ opt_rot_vec <- function(design, return_n = 5){
   dets <- apply(hope, 1, tester_d, design = d, inv = inv)
   det_org <- tester_d(design = d, rotv = c(rep(0,f), FALSE), inv = inv)
                   
-  best_omegas <- omegas[order(omegas, decreasing = TRUE)][c(1:return_n),]
+  best_omegas <- omegas[order(omegas, decreasing = TRUE)][c(1:return_n)]
   
   
   finals <- cbind(best_omegas, dets, dets/det_org, unqieness, matrix(candidate_vecs[,-(f+1)], ncol = f))
