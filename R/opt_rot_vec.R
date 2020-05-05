@@ -58,7 +58,7 @@ opt_rot_vec <- function(design, return_n = 5){
   
   finals <- cbind(best_omegas, dets, dets/det_org, unqieness, matrix(candidate_vecs[,-(f+1)], ncol = f))
   if(class(finals) == 'vector'){finals <- as.data.frame(t(finals))}
-  colnames(finals)[1:5] <- c('Omega value', 'Determinant', 'Det Ratio', 'Run Reduceds?', 'Rotation Vectors')
+  colnames(finals)[1:5] <- c('Omega value', 'Determinant', 'Det Ratio', 'Run Reduced?', 'Rotation Vectors')
   finals <- finals[order(-finals[,1], -finals[,2]), ]
   return(finals)
 }
