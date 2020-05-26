@@ -23,13 +23,14 @@
 opt_rot_vec <- function(design, return_n = 5){
   inv <- FALSE
   
+  
   #warnings 
   if(return_n %% 1 != 0){stop("Please make the return_n parameter a natural number!", immediate. = TRUE)}
   if(sum(class(design) == c("matrix", "data.frame")) == 0 ) {stop("Please give the design as a matrix or data.frame!", immediate. = TRUE)}
   if(sum(sort(unique(unlist(design))) == c(0, 1, 2)) != 3) {stop("Please code the matrix with 0, 1 and 2's only!", immediate. = TRUE)}
   
   
-  d <- design
+  d <- as.matrix(design)
   
   f <- dim(d)[2]
  

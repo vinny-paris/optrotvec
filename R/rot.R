@@ -21,7 +21,6 @@
 rot <- function(D, rotation_vector, unique = TRUE){
   
   if(sum(class(D) == c("matrix", "data.frame")) == 0 ) {stop("Please give the design as a matrix or data.frame!", call. = FALSE)}
-  if(sum(sort(unique(as.vector(D))) == c(0, 1, 2)) != 3) {stop("Please code the matrix with 0, 1 and 2's only!")}
   if(dim(D)[2] != length(rotation_vector)) {stop("Please make the rotation vector have the same number of factors as the design matrix!")}
   if(sum(class(rotation_vector) == c("numeric", "vector")) == 0) {stop("Please make the rotation vector a numeric vector!")}
 
