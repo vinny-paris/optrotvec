@@ -5,7 +5,7 @@ Authors@R: person("Vinny", "Paris", email = "vinny at iastate dot com",
                   role = c("aut", "cre"))
 Maintainer: Vinny Paris <vinny@iastate.edu>
 Description: Finding the optimal foldover plan is a computationally intensive task as the number of combinations grows by trinary exponentiation. Our functions willr eturn the optimal rotation vector, the omega value and the determinant for the best candidate rotations.
-Depends: R (>= 3.1.0)
+Depends: R (>= 3.1.0), tidyverse
 Imports: tidyverse
 License: MIT + file LICENSE
 Encoding: UTF-8
