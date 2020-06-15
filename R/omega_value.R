@@ -30,7 +30,7 @@ omega <- function(D){
   row_need <- 2*(1:f) - 1
   col_need <- 2*(1:(f*(f-1))) - 1
   dd <- data.frame(row_need, col_need)
-  combs <- tidyr::expand(dd, dd[,1], dd[,2])
+  combs <- expand(dd, dd[,1], dd[,2])
   
   final <- sum(apply(combs, 1, submatrix_counter, alias = t))
   return(final)

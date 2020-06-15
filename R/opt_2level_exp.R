@@ -5,13 +5,13 @@
 #' @param design The two level design coded 0,1 (intercept included) to be expanded
 #' @param return_n The number of candidate rotation vectors to return. The default is 5.
 #' 
-#' 
+#' @export
 #' 
 #' @return This will return a data frame of return_n by f + 1 for f being the number of factors in the original design.
 #' The fist column is 'Det' which is the determinant of the information matrix for the design created using that rotation vector
 #' The remaining columns are the vectors corresponding to the elements of the rotation vector.
 #' 
-#' @example 
+#' @examples 
 #' d2 <- ran_D2(25, 7)
 #' opt_2level_exp(d2, return_n = 10)
 #'   
@@ -29,7 +29,7 @@ opt_2level_exp <- function(design, return_n = 5){
   
   f <- dim(d)[2]
  
-  all_rot_vec <- optrotvec:::alias_design(f)
+  all_rot_vec <- alias_design(f)
   s <- sample(dim(all_rot_vec)[1])
   all_rot_vec <- all_rot_vec[s,]
   jj <<- all_rot_vec
@@ -39,8 +39,7 @@ opt_2level_exp <- function(design, return_n = 5){
                
   alts     <- rbind(all_rot_vec)
   
-  if(length(dim(candidate_vecs)) == 0){candidate_vecs <- as.matrix(t(candidate_vecs))}
-  hope <- cbind(candidate_vecs)
+  hope <- cbind(alts)
 
   
   dets <- apply(hope, 1, tester_d2, design = d, inv = inv)

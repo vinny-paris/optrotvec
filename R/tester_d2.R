@@ -8,15 +8,11 @@
 #' 
 #' @return The determinant of the information matrix is returned
 #' 
-#' @example
-#' d <- ran_D(30, 4)
-#' tester_d2(c(1,1,2,2), d, inv = FALSE)
-#' 
 
 
 tester_d2 <- function(rotv, design, inv = FALSE){
   d <- rot(design, rotv, unique = FALSE)
   if(inv) {value <- d_opt(d)}
-  else {value <- optrotvec:::d_opt_noinv(d)}
+  else {value <- d_opt_noinv(d)}
   return(value)
 }

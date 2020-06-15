@@ -33,12 +33,12 @@ opt_rot_vec <- function(design, return_n = 5){
   
   f <- dim(d)[2]
  
-  all_rot_vec <- optrotvec:::alias_design(f)
+  all_rot_vec <- alias_design(f)
   s <- sample(dim(all_rot_vec)[1])
   all_rot_vec <- all_rot_vec[s,]
   
-  omegas1 <- apply(all_rot_vec, 1, optrotvec:::tester, design = d)
-  omegas2 <- apply(all_rot_vec, 1, optrotvec:::tester, design = d, unique = FALSE)
+  omegas1 <- apply(all_rot_vec, 1, tester, design = d)
+  omegas2 <- apply(all_rot_vec, 1, tester, design = d, unique = FALSE)
   omegas  <- c(omegas1, omegas2)
   o_tf    <- c(rep(TRUE, length(omegas1)), rep(FALSE, length(omegas2)))
                
@@ -50,8 +50,8 @@ opt_rot_vec <- function(design, return_n = 5){
   hope <- cbind(candidate_vecs, unqieness)
 
   
-  dets <- apply(hope, 1, optrotvec:::tester_d, design = d, inv = inv)
-  det_org <- optrotvec:::tester_d(design = d, rotv = c(rep(0,f), FALSE), inv = inv)
+  dets <- apply(hope, 1, tester_d, design = d, inv = inv)
+  det_org <- tester_d(design = d, rotv = c(rep(0,f), FALSE), inv = inv)
                   
   best_omegas <- omegas[order(omegas, decreasing = TRUE)]
 

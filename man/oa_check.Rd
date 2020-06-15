@@ -15,10 +15,3 @@ This will return a data frame with the first f columns being that of D and the r
 \description{
 For a given 3-level design this function creates and encodes all second order interactions
 }
-\examples{
-\donttest{
-x <- ran_D(10,3)
-x2 <- oa_check(x)
-x2
-}
-}

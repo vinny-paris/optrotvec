@@ -15,3 +15,9 @@ Determant value
 \description{
 Given a deisgn encoded with 0,1,2 this will calculate the value of the information matrix
 }
+\examples{
+\dontrun{
+j <- ran_D(20, 4)
+d_opt_noinv(j)
+}
+}

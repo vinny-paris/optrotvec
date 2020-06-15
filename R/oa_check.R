@@ -6,12 +6,7 @@
 #' 
 #' @return This will return a data frame with the first f columns being that of D and the remaining being the encoded second order interactions. All facotrs are assigned a latin value (A, B, C, etc..).
 #' 
-#' @examples
-#' \donttest{
-#' x <- ran_D(10,3)
-#' x2 <- oa_check(x)
-#' x2
-#' }
+
 
 
 

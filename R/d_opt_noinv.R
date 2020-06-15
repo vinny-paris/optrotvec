@@ -6,7 +6,7 @@
 #' 
 #' @return Determant value
 #' 
-#' @example 
+#' @examples 
 #' \dontrun{
 #' j <- ran_D(20, 4)
 #' d_opt_noinv(j)

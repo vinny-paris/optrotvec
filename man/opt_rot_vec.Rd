@@ -15,7 +15,7 @@ opt_rot_vec(design, return_n = 5)
 Returns a data frame that is return_n by f + 2.  
 Omega-value. This will be the first column
 Determenant of the information matrix
-Det. Ratio. This is the ratio of the deteminant column over the the detemenant of the inverse of the information matrix for a design that is just a tripling of the original.
+Det. Ratio. This is the ratio of the deteminant column over the the detemenant of the information matrix for a design that is just a tripling of the original.
 Rotation vectors
 }
 \description{

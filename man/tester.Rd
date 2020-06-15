@@ -4,12 +4,14 @@
 \alias{tester}
 \title{Design and Omega Calculator}
 \usage{
-tester(rotv, design)
+tester(rotv, design, unique = TRUE)
 }
 \arguments{
 \item{rotv}{The rotation vector with elements 0,1,2 of length f for f being number of factors}
 
 \item{design}{The design matrix to be expanded with elements 0,1,2}
+
+\item{unique}{Should the design have only unique rows?}
 }
 \value{
 Omega value for the agumented design

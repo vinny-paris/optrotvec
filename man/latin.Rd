@@ -4,12 +4,14 @@
 \name{latin}
 \alias{latin}
 \title{Naming Effects Tool}
-\format{A data frame with 26 rows and 3 variables:
+\format{
+A data frame with 26 rows and 3 variables:
 \describe{
   \item{Level 0}{blank}
   \item{Level 1}{single latin letter}
   \item{Level 2}{latin letter followed by a 2}
-}}
+}
+}
 \usage{
 latin
 }
