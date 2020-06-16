@@ -3,6 +3,7 @@
 export(alias_matrix)
 export(omega)
 export(opt_2level_exp)
+export(opt_partial_2level)
 export(opt_rot_vec)
 export(ran_D)
 export(ran_D2)

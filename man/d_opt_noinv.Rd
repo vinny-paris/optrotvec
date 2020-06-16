@@ -4,10 +4,12 @@
 \alias{d_opt_noinv}
 \title{Determinant of Info. Matrix}
 \usage{
-d_opt_noinv(design)
+d_opt_noinv(design, reducer = FALSE)
 }
 \arguments{
 \item{design}{The encoded design matrix}
+
+\item{reducer}{This is used to correct for an encoded matrice with both 2-level and 3-level factors.}
 }
 \value{
 Determant value
