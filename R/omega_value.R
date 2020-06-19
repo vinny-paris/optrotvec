@@ -9,14 +9,7 @@
 #' @return 
 #' \item{Omega-value}{The value the Omega optimality criterion for this design.}
 #' 
-#' @examples 
-#' \donttest{X <- ran_D(30, 5)
-#' alias_matrix(X)
-#' omega(X)
-#' X1 <- rot(X, c(1,1,1,1,1))
-#' alias_matrix(X1)
-#' omega(X1)
-#' }
+
 
 
 omega <- function(D){
