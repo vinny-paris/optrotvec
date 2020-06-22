@@ -4,7 +4,7 @@
 \alias{opt_partial_2level}
 \title{Foldover Design to introduce new levels to a subset of factors}
 \usage{
-opt_partial_2level(design, return_n = 5, cl)
+opt_partial_2level(design, return_n = 5, cl, opt = "Det")
 }
 \arguments{
 \item{design}{The two level design coded 0,1 (intercept included) to be expanded}
@@ -12,6 +12,8 @@ opt_partial_2level(design, return_n = 5, cl)
 \item{return_n}{The number of candidate rotation vectors to return. The default is 5.}
 
 \item{cl}{A vector of the location of columns that should be exapnded from 2 levels to 3 levels.}
+
+\item{opt}{What optimality criterion should be used? Choices are 'Det' for the largest determinants or 'Min_Incident' which returns the max of the min of the incidnets of two factor levels.}
 }
 \value{
 This will return a data frame of return_n by f + 1 for f being the number of factors in the original design.

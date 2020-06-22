@@ -16,7 +16,7 @@ full_incident_partial <- function(e, tt1, tt2, tt3){
   k <- NULL
   holding <- list(NA)
   for(x in 1:f){
-    holding <- cat_and_count_partial(e[,c(x, x+1)], tt1, tt2 tt3)
+    holding <- cat_and_count_partial(e[,c(x, x+1)], tt1, tt2, tt3)
     k <- rbind(holding, k)
   }
   return(k)
