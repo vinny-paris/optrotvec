@@ -36,6 +36,7 @@ opt_partial_2level <- function(design, return_n = 5, cl, opt = 'Det'){
   all_rot_vec <- alias_design(length(cl))
   s <- sample(dim(all_rot_vec)[1], replace = FALSE)
   all_rot_vec <- all_rot_vec[s,]
+  all_rot_vec <- all_rot_vec[apply(all_rot_vec, 1, function(r) !any(r %in% 0)),]
 
   #creates rotation vectors with 0's in the non interesting colums
   mat <- matrix(c(rep(0, (f*dim(all_rot_vec)[1]))), ncol = f)
