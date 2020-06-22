@@ -22,32 +22,35 @@ opt_2level_exp <- function(design, return_n = 5){
   if(return_n %% 1 != 0){stop("Please make the return_n parameter a natural number!", immediate. = TRUE)}
   if(sum(class(design) == c("matrix", "data.frame")) == 0 ) {stop("Please give the design as a matrix or data.frame!", immediate. = TRUE)}
 
-  
+  #convert data frames to matrices
   d <- as.matrix(design)
   
+  #find demention
   f <- dim(d)[2]
  
+  #generate and randomize rotation vectors (incase of det. tie in optimality ranking)
   all_rot_vec <- alias_design(f)
   s <- sample(dim(all_rot_vec)[1])
   all_rot_vec <- all_rot_vec[s,]
+  
+  #force rotation vectors to increase ALL levels
+  hope <- all_rot_vec[apply(all_rot_vec, 1, function(r) !any(r %in% 0)),]
 
-  all_rot_vec <- all_rot_vec[apply(all_rot_vec, 1, function(r) !any(r %in% 0)),]
-  
-  
-               
-  alts     <- rbind(all_rot_vec)
-  
-  hope <- cbind(alts)
-
-  
+  #caclulate the determinants
   dets <- apply(hope, 1, tester_d2, design = d, inv = inv)
  
+  #calculate the min incidents
+  inc_min_list <- apply(hope[,-c(dim(hope)[2])], 1, tester_inc2, design = d)
+  inc_min <- do.call(rbind.data.frame, inc_min_list)
+  inc_min <- apply(inc_min, 2, as.numeric)
   
-
-  finals <- cbind(dets^(1/(2*f + 1)), matrix(hope, ncol = f))
+  #build the data frame to be presented
+  finals <- cbind(dets^(1/(2*f + 1)), inc_min, matrix(hope, ncol = f))
   
   finals <- data.frame(finals)
-  colnames(finals)[c(1,2)] <- c('Det',  'Rotation Vectors')
+  colnames(finals)[1:4] <- c('Det',  'Min. Inc.', 'Frequency', 'Rotation Vectors')
+  
+  #rankings of the rotation vectors for a given optimality criterion.
   finals <- arrange(as.data.frame(finals), desc(dets))[c(1:return_n),]
   return(finals)
 }
