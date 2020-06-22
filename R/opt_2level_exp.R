@@ -40,7 +40,7 @@ opt_2level_exp <- function(design, return_n = 5){
   dets <- apply(hope, 1, tester_d2, design = d, inv = inv)
  
   #calculate the min incidents
-  inc_min_list <- apply(hope[,-c(dim(hope)[2])], 1, tester_inc2, design = d)
+  inc_min_list <- apply(hope, 1, tester_inc2, design = d)
   inc_min <- do.call(rbind.data.frame, inc_min_list)
   inc_min <- apply(inc_min, 2, as.numeric)
   
