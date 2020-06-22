@@ -4,6 +4,7 @@
 #' 
 #' @param design The two level design coded 0,1 (intercept included) to be expanded
 #' @param return_n The number of candidate rotation vectors to return. The default is 5.
+#' @param opt What optimality criterion should be used? Choices are 'Det' for the largest determinants or 'Min_Incident' which returns the max of the min of the incidnets of two factor levels.
 #' 
 #' @export
 #' 
@@ -15,13 +16,14 @@
 #' The remaining columns are the vectors corresponding to the elements of the rotation vector.
 
 
-opt_2level_exp <- function(design, return_n = 5){
+opt_2level_exp <- function(design, return_n = 5, opt = 'Det'){
   inv <- FALSE
   
   #warnings 
   if(return_n %% 1 != 0){stop("Please make the return_n parameter a natural number!", immediate. = TRUE)}
   if(sum(class(design) == c("matrix", "data.frame")) == 0 ) {stop("Please give the design as a matrix or data.frame!", immediate. = TRUE)}
-
+  if(sum(opt == c("Min_Incident", "Det")) == 0 ){stop("Unknown Optimality Choice, please correct!", immediate. = TRUE)}
+  
   #convert data frames to matrices
   d <- as.matrix(design)
   
@@ -51,7 +53,11 @@ opt_2level_exp <- function(design, return_n = 5){
   colnames(finals)[1:4] <- c('Det',  'Min. Inc.', 'Frequency', 'Rotation Vectors')
   
   #rankings of the rotation vectors for a given optimality criterion.
-  finals <- arrange(as.data.frame(finals), desc(dets))[c(1:return_n),]
+  
+  
+  if(opt == 'Det') {finals <- arrange(as.data.frame(finals), desc(dets))[c(1:return_n),]}
+  if(opt == 'Min_Incident') {finals <- arrange(as.data.frame(finals), desc(inc_min[,1]), (inc_min[,2]), desc(dets))[c(1:return_n),]}
+
   return(finals)
 }
 
