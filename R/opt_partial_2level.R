@@ -12,6 +12,9 @@
 #' The fist column is 'Det' which is the determinant of the information matrix for the design created using that rotation vector
 #' The remaining columns are the vectors corresponding to the elements of the rotation vector.
 #' 
+#' 
+#' @importFrom dplyr arrange
+#' @importFrom dplyr desc
 
 
 

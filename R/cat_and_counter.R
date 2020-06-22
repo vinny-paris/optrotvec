@@ -2,6 +2,9 @@
 #' 
 #' @param x two column data frame for which the indicents are to be counted
 #' @param table_values The character values for which the incidents of x are to be counted for
+#' 
+#' @importFrom reshape2 melt
+#' @importFrom stringr str_c
 
 cat_and_count <- function(x, table_values){
   tab <- table(x[,1], x[,2])

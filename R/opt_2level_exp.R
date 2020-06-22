@@ -7,6 +7,9 @@
 #' 
 #' @export
 #' 
+#' @importFrom dplyr arrange
+#' @importFrom dplyr desc
+#' 
 #' @return This will return a data frame of return_n by f + 1 for f being the number of factors in the original design.
 #' The fist column is 'Det' which is the determinant of the information matrix for the design created using that rotation vector
 #' The remaining columns are the vectors corresponding to the elements of the rotation vector.

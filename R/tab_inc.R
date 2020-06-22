@@ -2,6 +2,8 @@
 #'
 #'Generally useful to compare minimum incidents
 #'@param d The design to have it's incidnets tabulated
+#'
+#'@importFrom utils combn
 
 
 
@@ -21,7 +23,7 @@ tab_inc <- function(d){
   
   e <- col_copier(d, col_pairs)
   
-  g <- full_incident(e)
+  g <- full_incident(e, tt)
   
   val <- table(g$value)
   

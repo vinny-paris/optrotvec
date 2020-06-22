@@ -6,6 +6,8 @@
 #' 
 #' @param D The design matirx encoded with (0,1,2) where each run is a row. 
 #' 
+#' @importFrom tidyr expand
+#' 
 #' @return 
 #' \item{Omega-value}{The value the Omega optimality criterion for this design.}
 #' 

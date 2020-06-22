@@ -4,6 +4,9 @@
 #' 
 #' @export
 #' 
+#' @importFrom dplyr arrange
+#' @importFrom dplyr desc
+#' 
 #' @param design The encoded design matrix using 0,1,2 notation that is to be expanded
 #' @param return_n How many of the top rotation vectors (with regards to Omega) should be returned? Default is 5.
 #' @param opt What optimality criterion should be used? Options is Omega (default), Det, Run_Size, Min_Inc (see below for details).

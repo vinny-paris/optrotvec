@@ -4,12 +4,14 @@
 \alias{opt_rot_vec}
 \title{Finds the optimal foldover plans for 3 level designs}
 \usage{
-opt_rot_vec(design, return_n = 5)
+opt_rot_vec(design, return_n = 5, opt = "Omega")
 }
 \arguments{
 \item{design}{The encoded design matrix using 0,1,2 notation that is to be expanded}
 
 \item{return_n}{How many of the top rotation vectors (with regards to Omega) should be returned? Default is 5.}
+
+\item{opt}{What optimality criterion should be used? Options is Omega (default), Det, Run_Size, Min_Inc (see below for details).}
 }
 \value{
 Returns a data frame that is return_n by f + 2.  
@@ -20,6 +22,9 @@ Rotation vectors
 }
 \description{
 For a given design matrix encoded with 0,1,2 this function will return the values of Omega, the determinant of the inverse of X_1'X_1, and
+}
+\details{
+There are four unique optimality criterion's that the foldover design can be chosen for. They are Omega, which returns the highest Omega-values (ties broken by Det.), Det which returns designs ranked by the determinant value, Run_Size, which ranks designs in the minimum number of runs to compelte a foldover without replication and finally Min_Incident which ranks designs by the maximum of the minimum of the number of pairs of any column at any level coincide with each other.
 }
 \examples{
 \dontrun{

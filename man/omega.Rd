@@ -15,12 +15,3 @@ omega(D)
 \description{
 The function takes in a single 3-level design and returns the calculated value for Omega.
 }
-\examples{
-\donttest{X <- ran_D(30, 5)
-alias_matrix(X)
-omega(X)
-X1 <- rot(X, c(1,1,1,1,1))
-alias_matrix(X1)
-omega(X1)
-}
-}
