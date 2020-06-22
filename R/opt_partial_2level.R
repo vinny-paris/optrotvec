@@ -46,7 +46,7 @@ opt_partial_2level <- function(design, return_n = 5, cl, opt = 'Det'){
   dets <- apply(mat, 1, tester_partial2, design = d, inv = inv)
   
   #calculate the min incidents
-  inc_min_list <- apply(mat, 1, tester_inc2_partial, design = d, cl = cl)
+  inc_min_list <- apply(mat, 1, tester_inc2_partial, design = d)
   inc_min <- do.call(rbind.data.frame, inc_min_list)
   inc_min <- apply(inc_min, 2, as.numeric)
   
