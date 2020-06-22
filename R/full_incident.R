@@ -10,6 +10,7 @@
 
 full_incident <- function(e, tt){
   f <- dim(e)[2]/2
+  k <- NULL
   holding <- list(NA)
   for(x in 1:f){
     holding <- cat_and_count(e[,c(x, x+1)], tt)
