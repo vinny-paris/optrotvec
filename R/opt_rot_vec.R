@@ -71,7 +71,7 @@ opt_rot_vec <- function(design, return_n = 5, opt = "Omega"){
   
   finals <- cbind(best_omegas, dets^(1/(2*f + 1)), dets/det_org, n_runs, inc_min, hope[,(f+1)], matrix(hope[,-(f+1)], ncol = f))
   
-  finals <- finals[!duplicate(finals[,-7]),] 
+  finals <- finals[!duplicated(finals[,-7]),] 
   
   colnames(finals)[1:8] <- c('Omega value', 'Det', 'Det Ratio', 'Run Size', 'Min. Incident', 'Frequency', 'Run Reduced?', 'Rotation Vectors')
   if(opt == 'Omega') {finals <- arrange(as.data.frame(finals), desc(best_omegas), desc(dets))[c(1:return_n),]}
