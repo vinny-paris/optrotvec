@@ -1,6 +1,6 @@
 #' Finds the optimal foldover plans for 3 level designs
 #' 
-#' For a given design matrix encoded with 0,1,2 this function will return the values of Omega, the determinant of the inverse of X_1'X_1, and 
+#' For a given design matrix encoded with 0,1,2 this function will return the values of Omega, the determinant of the inverse of X_1'X_1, the ratio of the determinants of the the rotation vector design vs a null rotation design. Duplicated designs are removed.
 #' 
 #' @export
 #' 
@@ -71,12 +71,14 @@ opt_rot_vec <- function(design, return_n = 5, opt = "Omega"){
   
   finals <- cbind(best_omegas, dets^(1/(2*f + 1)), dets/det_org, n_runs, inc_min, hope[,(f+1)], matrix(hope[,-(f+1)], ncol = f))
   
+  finals <- finals[!duplicate(finals[,-7]),] 
   
   colnames(finals)[1:8] <- c('Omega value', 'Det', 'Det Ratio', 'Run Size', 'Min. Incident', 'Frequency', 'Run Reduced?', 'Rotation Vectors')
   if(opt == 'Omega') {finals <- arrange(as.data.frame(finals), desc(best_omegas), desc(dets))[c(1:return_n),]}
   if(opt == 'Det') {finals <- arrange(as.data.frame(finals), desc(dets))[c(1:return_n),]}
   if(opt == 'Run_Size') {finals <- arrange(as.data.frame(finals), n_runs, desc(dets))[c(1:return_n),]}
   if(opt == 'Min_Incident') {finals <- arrange(as.data.frame(finals), desc(inc_min[,1]), (inc_min[,2]), desc(dets))[c(1:return_n),]}
+  
   return(finals)
 }
 
