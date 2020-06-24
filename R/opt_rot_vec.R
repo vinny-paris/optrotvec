@@ -74,10 +74,10 @@ opt_rot_vec <- function(design, return_n = 5, opt = "Omega"){
   finals <- finals[!duplicated(finals[,-7]),] 
   
     colnames(finals)[1:8] <- c('Omega value', 'Det', 'Det Ratio', 'Run Size', 'Min. Incident', 'Frequency', 'Run Reduced?', 'Rotation Vectors')
-  if(opt == 'Omega') {finals <- arrange(as.data.frame(finals), desc(finals$'Omega value'), desc(finals$'Det'))[c(1:return_n),]}
-  if(opt == 'Det') {finals <- arrange(as.data.frame(finals), desc(finals$'Det'))[c(1:return_n),]}
-  if(opt == 'Run_Size') {finals <- arrange(as.data.frame(finals), finals$'Run Size', desc(finals$'Det'))[c(1:return_n),]}
-  if(opt == 'Min_Incident') {finals <- arrange(as.data.frame(finals), desc(finals$'Min. Incident'), (finals$'Frequency'), desc(finals$'Det'))[c(1:return_n),]}
+  if(opt == 'Omega') {finals <- arrange(as.data.frame(finals), desc(finals[,1]), desc(finals[,2]))[c(1:return_n),]}
+  if(opt == 'Det') {finals <- arrange(as.data.frame(finals), desc(finals[,2]))[c(1:return_n),]}
+  if(opt == 'Run_Size') {finals <- arrange(as.data.frame(finals), finals[,4], desc(finals[,2]))[c(1:return_n),]}
+  if(opt == 'Min_Incident') {finals <- arrange(as.data.frame(finals), desc(finals[,5]), (finals[,6]), desc(finals[,2]))[c(1:return_n),]}
   
 
   return(finals)
