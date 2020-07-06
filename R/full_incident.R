@@ -13,7 +13,7 @@ full_incident <- function(e, tt){
   k <- NULL
   holding <- list(NA)
   for(x in 1:f){
-    holding <- cat_and_count(e[,c(x, x+1)], tt)
+    holding <- cat_and_count(e[,c(2*x - 1, 2*x)], tt)
     k <- rbind(holding, k)
   }
   return(k)
